@@ -15,6 +15,7 @@ config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
  * @constant {string} QSTASH_URL - The URL of the QStash API.
  * @constant {string} QSTASH_TOKEN - The token used to authenticate with the QStash API
  * @constant {string} SERVER_URL - The URL of the server
+ * @constant {string} EMAIL_PASSWORD - The password for the email account
 */
 
 export const { 
@@ -27,5 +28,6 @@ export const {
     ARCJET_ENV,
     QSTASH_URL,
     QSTASH_TOKEN,
-    SERVER_URL 
+    SERVER_URL,
+    EMAIL_PASSWORD 
 } = process.env;
