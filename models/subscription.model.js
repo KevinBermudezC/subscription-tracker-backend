@@ -86,5 +86,9 @@ subscriptionSchema.pre('save', function (next) {
     next();
 });
 
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
+export default Subscription;
+
 
 /* { name: 'Netflix', price: 10, currency: 'USD', frequency: 'monthly', category: 'entertainment', paymentMethod: 'credit card', status: 'active', startDate: '2021-01-01', renewalDate: '2021-02-01', user: '60b9b3b3b3b3b3b3b3b3b3b3' } */
