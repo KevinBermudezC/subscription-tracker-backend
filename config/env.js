@@ -12,6 +12,9 @@ config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
  * @constant {string} JWT_EXPIRES_IN - The expiration time for the JWT.
  * @constant {string} ARCJET_KEY - The ArcJet API key.
  * @constant {string} ARCJET_ENV - The environment in which the ArcJet API is running.
+ * @constant {string} QSTASH_URL - The URL of the QStash API.
+ * @constant {string} QSTASH_TOKEN - The token used to authenticate with the QStash API
+ * @constant {string} SERVER_URL - The URL of the server
 */
 
 export const { 
@@ -21,5 +24,8 @@ export const {
     JWT_SECRET, 
     JWT_EXPIRES_IN,
     ARCJET_KEY,
-    ARCJET_ENV 
+    ARCJET_ENV,
+    QSTASH_URL,
+    QSTASH_TOKEN,
+    SERVER_URL 
 } = process.env;
