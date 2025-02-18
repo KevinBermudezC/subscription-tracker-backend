@@ -10,4 +10,10 @@ config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
  * @constant {string} DB_URI - The URI of the MongoDB database.
 */
 
-export const { PORT, NODE_ENV, DB_URI } = process.env;
+export const { 
+    PORT, 
+    NODE_ENV, 
+    DB_URI, 
+    JWT_SECRET, 
+    JWT_EXPIRES_IN 
+} = process.env;
