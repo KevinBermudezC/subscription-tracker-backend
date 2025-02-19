@@ -1,0 +1,32 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  server:
+    build:
+      context: .
+    environment:
+      - NODE_ENV=production
+      - DB_URI="mongodb+srv://kevinbermudezc:Anmakalake1@cluster0.g7pao.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    ports:
+      - 5500:5500
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules:/app/node_modules
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
