@@ -2,6 +2,12 @@ import aj from "../config/arcjet.js";
 
 const arcjetMiddleware = async(req, res, next) => {
   try {
+    console.log('Client IP:', {
+      remoteAddress: req.connection.remoteAddress,
+      xForwardedFor: req.headers['x-forwarded-for'],
+      realIP: req.headers['x-real-ip'],
+      socketRemoteAddress: req.socket.remoteAddress
+    });
     // Protect the route
     const decision = await aj.protect(req, {requested: 1});
 

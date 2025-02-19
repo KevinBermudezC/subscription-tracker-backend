@@ -13,6 +13,8 @@ import workflowRouter from './routes/workflow.routes.js';
 
 // Create an Express app
 const app = express();
+app.enable('trust proxy');
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
 // Add middleware to parse JSON and urlencoded request bodies
 app.use(express.json());
@@ -33,6 +35,10 @@ app.use(errorMiddleware);
 app.get('/',  (req,res) => {
     res.send('Welcome to the Subscription Tracker API');
 })
+
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 
 // Start the app on the specified port
 app.listen(PORT,async () => {

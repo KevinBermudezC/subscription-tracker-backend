@@ -1,6 +1,5 @@
 # Usa una imagen oficial de Node.js
-ARG NODE_VERSION=22.11.0
-FROM node:${NODE_VERSION}-alpine
+FROM node:20-alpine3.19
 
 # Define directorio de trabajo
 WORKDIR /usr/src/app
