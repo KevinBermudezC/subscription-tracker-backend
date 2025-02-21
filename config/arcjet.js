@@ -3,7 +3,7 @@ import { ARCJET_KEY } from "./env.js";
 
 const aj = arcjet({
     key: ARCJET_KEY,
-    ipSource: () => "127.0.0.1", // Force a valid IPv4 address for Docker environment
+    ipSource: (req) => req.headers["x-forwarded-for"] || req.socket.remoteAddress,
     characteristics: ["ip.src"],
     rules: [
         shield({ 
@@ -12,7 +12,7 @@ const aj = arcjet({
         }),
         detectBot({
             mode: "LIVE",
-            allow: ["CATEGORY:SEARCH_ENGINE"],
+            allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:BROWSER"],
         }),
         tokenBucket({
             mode: "LIVE",
