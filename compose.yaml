@@ -11,18 +11,19 @@ services:
   server:
     build:
       context: .
-    env_file:
-      - .env.production.local
     environment:
       - NODE_ENV=production
+      - PORT=5500
     ports:
-      - 5500:5500
+      - "5500:5500"
+    networks:
+      - app-network
     depends_on:
       mongodb:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:5500/health"]
+      test: ["CMD", "wget", "--spider"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -34,6 +35,8 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+    networks:
+      - app-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
@@ -43,5 +46,10 @@ services:
     volumes:
       - mongodb_data:/data/db
 
+networks:
+  app-network:
+    driver: bridge
+
 volumes:
   mongodb_data:
+
